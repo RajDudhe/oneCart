@@ -24,7 +24,6 @@ function Nav() {
         try {
             const result = await axios.get(serverUrl + "/api/auth/logout" , {withCredentials:true})
             console.log(result.data)
-            getCurrentUser()
             setUserData(null)
             navigate("/login")
         } catch (error) {
@@ -64,7 +63,7 @@ function Nav() {
             {!userData && <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer' onClick={()=>{
                 navigate("/login");setShowProfile(false)
             }}>Login</li>}
-            {userData && <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer' onClick={()=>{handleLogout();setShowProfile(false)}}>LogOut</li>}
+            {userData && <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer' onClick={()=>{handleLogout();navigate("/login");setShowProfile(false)}}>LogOut</li>}
             <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer'onClick={()=>{navigate("/order");setShowProfile(false)}} >Orders</li>
             <li className='w-[100%] hover:bg-[#2f2f2f]  px-[15px] py-[10px] cursor-pointer'onClick={()=>{navigate("/about");setShowProfile(false)}} >About</li>
         </ul>
